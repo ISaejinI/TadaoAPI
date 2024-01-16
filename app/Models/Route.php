@@ -16,6 +16,6 @@ class Route extends Model
 
     public function trips(): HasMany 
     {
-        return $this->hasMany(Trip::class, 'route_id', 'route_id');
+        return $this->hasMany(Trip::class, 'route_id', 'route_id'); // la clé étrangère, la clé locale
     }
 }
