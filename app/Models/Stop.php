@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Stop extends Model
 {
@@ -14,9 +15,9 @@ class Stop extends Model
 
     public $timestamps = false;
 
-    public function trips(): BelongsTo
+    public function trips(): BelongsToMany
     {
-        return $this->belongsTo(Route::class, 'trip_id', 'stop_id');
+        return $this->belongsToMany(Route::class, 'trip_id', 'stop_id');
     }
 
 }
