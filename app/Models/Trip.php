@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Trip extends Model
 {
@@ -12,5 +14,20 @@ class Trip extends Model
     protected $primaryKey = 'trip_id'; //Si la clé primaire n'est pas id
 
     public $timestamps = false;
+
+    public function route(): BelongsTo
+    {
+        return $this->belongsTo(Route::class, 'route_id', 'route_id');
+    }
+
+    public function shapes(): HasMany 
+    {
+        return $this->hasMany(Shape::class, 'shape_id', 'shape_id');
+    }
+
+    public function stops(): BelongsTo
+    {
+        return $this->belongsTo(Route::class, 'stop_id', 'trip_id');
+    }
 
 }
