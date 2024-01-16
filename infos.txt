@@ -1,0 +1,30 @@
+Shapes.txt --> itinéraires de toutes les lignes de bus avec les points
+    Shape id : propre à chaque itinéraire
+    Shape pt lat : latitude du point
+    Shape pt lon : longitude du point
+    Shape pt sequence : sens dans lequel on doit interpréter les points
+
+Routes.txt --> informations sur les lignes
+    route_id :
+    route_short_name :
+    route_long_name :
+    route_desc :
+    route_type :
+    route_url :
+    route_color :
+
+Stops.txt --> donne les arrêts de bus
+    stop_id : numéro de l'arrêt
+    stop_code : numéro de l'arrêt
+    stop_name : nom de l'arrêt 
+    stop_desc : adresse de l'arrêt
+    stop_lat / stop_lon : coordonnées gps de l'arrêt
+
+Trips.txt --> un trajet
+    trip_id : numéro du trajet
+    route_id : associé à une ligne de bus
+    trip_headsign : texte qui est affiché sur le bus
+    shape_id : il est rattaché à un itinéraire
+    direction_id : le sens dans lequel on parcours la ligne --> allé =! retour
+
+Stoptimes.txt --> table pivot => many to many
