@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('shapes', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('shape_id');
+            $table->double('shape_pt_lat');
+            $table->double('shape_pt_lon');
+            $table->integer('shape_pt_sequence');
+            // $table->timestamps();
         });
     }
 
