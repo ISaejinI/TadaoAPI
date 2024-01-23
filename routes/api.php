@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\API\RouteController;
+use App\Http\Controllers\API\StopController;
+use App\Http\Controllers\API\TripController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +20,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::apiResource("Route", RouteController::class);
+
+Route::apiResource("Stop", StopController::class);
+
+Route::apiResource("Trip", TripController::class);
