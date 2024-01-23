@@ -13,7 +13,9 @@ class StopController extends Controller
      */
     public function index()
     {
-        //
+        $stops = Stop::All();
+        
+        return response()->json($stops);
     }
 
     /**
@@ -29,7 +31,7 @@ class StopController extends Controller
      */
     public function show(Stop $stop)
     {
-        //
+        return response()->json($stop);
     }
 
     /**

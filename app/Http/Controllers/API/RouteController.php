@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Route;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RouteController extends Controller
 {
@@ -13,7 +14,9 @@ class RouteController extends Controller
      */
     public function index()
     {
-        //
+        $routes = Route::All();
+
+        return response()->json($routes);
     }
 
     /**
@@ -29,7 +32,7 @@ class RouteController extends Controller
      */
     public function show(Route $route)
     {
-        //
+        return response()->json($route);
     }
 
     /**
