@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Route;
 use App\Models\Stop;
 use Illuminate\Http\Request;
 
@@ -48,5 +49,12 @@ class StopController extends Controller
     public function destroy(Stop $stop)
     {
         //
+    }
+
+    public function routes(Stop $stop)
+    {
+        $routes = $stop->trips->unique('route_id')->pluck('route_id');
+        $res = Route::whereIn('route_id', $routes)->get(); //get pour récupérer
+        return response()->json($res);
     }
 }
