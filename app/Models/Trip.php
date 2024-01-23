@@ -28,7 +28,7 @@ class Trip extends Model
 
     public function stops(): BelongsToMany
     {
-        return $this->belongsToMany(Stop::class, 'stop_trip', 'trip_id', 'stop_id');
+        return $this->belongsToMany(Stop::class, 'stop_trip', 'trip_id', 'stop_id')->withPivot('arrival_time', 'depature_time');
     }
 
 }

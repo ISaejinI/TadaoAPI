@@ -50,4 +50,9 @@ class RouteController extends Controller
     {
         //
     }
+
+    public function trips(Route $route)
+    {
+        return response()->json($route->trips);
+    }
 }

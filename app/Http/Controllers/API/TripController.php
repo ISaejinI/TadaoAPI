@@ -31,7 +31,7 @@ class TripController extends Controller
      */
     public function show(Trip $trip)
     {
-        return response()->json($trip ->load(['shape' => function($query){$query -> orderBy('shape_pt_sequence', 'asc');}]));
+        return response()->json($trip -> load(['shapes' => function($query){$query -> orderBy('shape_pt_sequence', 'asc');}]));
     }
 
     /**
@@ -48,5 +48,19 @@ class TripController extends Controller
     public function destroy(Trip $trip)
     {
         //
+    }
+
+    public function routes(Trip $trip)
+    {
+        return response()->json($trip->route);
+    }
+
+    public function stops(Trip $trip)
+    {
+        return response()->json($trip->load(["stops" => function($query)
+            {
+                $query -> orderBy('stop_sequence', 'asc');
+            }])
+        );
     }
 }
