@@ -21,8 +21,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource("Route", RouteController::class);
+Route::apiResource("routes", RouteController::class);
 
-Route::apiResource("Stop", StopController::class);
+Route::apiResource("stops", StopController::class);
 
-Route::apiResource("Trip", TripController::class);
+Route::apiResource("trips", TripController::class);
