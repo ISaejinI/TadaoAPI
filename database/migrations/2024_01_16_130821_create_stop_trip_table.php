@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('stops_trips', function (Blueprint $table) {
+        Schema::create('stop_trip', function (Blueprint $table) {
             $table->id();
             $table->integer('trip_id');
             $table->foreign('trip_id')->references('trip_id')->on('trips');
             $table->string('stop_id');
-            $table->foreign('stop_id')->references('stop-id')->on('stops');
+            $table->foreign('stop_id')->references('stop_id')->on('stops');
             $table->time('arrival_time');
             $table->time('departure_time');
             $table->integer('stop_sequence');
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('stops_trips');
+        Schema::dropIfExists('stop_trip');
     }
 };

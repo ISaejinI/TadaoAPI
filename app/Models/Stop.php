@@ -17,7 +17,7 @@ class Stop extends Model
 
     public function trips(): BelongsToMany
     {
-        return $this->belongsToMany(Route::class, 'stops_trips', 'trip_id', 'stop_id'); // la table intermédiaire, la clé étrangère, la clé locale
+        return $this->belongsToMany(Route::class, 'stop_trip', 'trip_id', 'stop_id'); // la table intermédiaire, la clé étrangère, la clé locale
     }
 
 }

@@ -12,7 +12,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('stops', function (Blueprint $table) {
-            // $table->id();
             $table->string('stop_id');
             $table->string('stop_name');
             $table->string('stop_desc');
