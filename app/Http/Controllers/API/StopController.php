@@ -87,6 +87,26 @@ class StopController extends Controller
      */
     public function destroy(Stop $stop)
     {
-        //
+        $trips = $stop->trips;
+        $stop->trips()->detach();
+
+        foreach ($trips as $trip) {
+            $stops = $trip->stops()->orderBy('stop_sequence', 'desc')->get();
+            $nb = count($stops);
+
+            foreach ($stops as $s) {
+                if ($s->pivot->stop_sequence != $nb) {
+                    $s->pivot->stop_sequence = $nb;
+                    $s->pivot->save();
+                }
+                else {
+                    break;
+                }
+                $nb--;
+            };
+        };
+
+        $stop->delete();
+        return response()->noContent();
     }
 }
