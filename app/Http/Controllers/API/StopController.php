@@ -60,6 +60,6 @@ class StopController extends Controller
 
     public function route(Stop $stop)
     {
-        
+        //12	/api/stops/{id1}/route/{id2}	GET	retourne les voyages (et les horaires) des bus de la ligne {id2} desservant l'arrêt {id1}
     }
 }
