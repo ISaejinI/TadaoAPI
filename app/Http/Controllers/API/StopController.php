@@ -65,7 +65,21 @@ class StopController extends Controller
      */
     public function update(Request $request, Stop $stop)
     {
-        //
+        $request->validate([
+            "stop_name" => "required | max:255",
+            "stop_desc" => "required | string",
+            "stop_lat" => "required | numeric",
+            "stop_lon" => "required | numeric"
+        ]);
+
+        $stop->update([
+            "stop_name" => $request -> input("stop_name"),
+            "stop_desc" => $request -> input("stop_desc"),
+            "stop_lat" => $request -> input("stop_lat"),
+            "stop_lon" => $request -> input("stop_lon")
+        ]);
+
+        return response()->json($stop,200);
     }
 
     /**
