@@ -12,12 +12,13 @@ class Stop extends Model
     use HasFactory;
 
     protected $primaryKey = 'stop_id';
+    protected $keyType = 'string';
 
     public $timestamps = false;
 
     public function trips(): BelongsToMany
     {
-        return $this->belongsToMany(Route::class, 'stop_trip', 'trip_id', 'stop_id'); // la table intermédiaire, la clé étrangère, la clé locale
+        return $this->belongsToMany(Trip::class, 'stop_trip', 'stop_id', 'trip_id'); // la table intermédiaire, la clé étrangère, la clé locale
     }
 
 }
