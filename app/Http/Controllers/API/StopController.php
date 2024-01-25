@@ -58,8 +58,12 @@ class StopController extends Controller
         return response()->json($res);
     }
 
-    public function route(Stop $stop)
+    public function route(Stop $stop, Route $route) //Pemret de dire ce qu'on rentre dans l'url sans passer par un id
     {
+        //on mets des parenthèse à trips pour récupérer l'entiereté de la base de données
+        //on mets pas de parenthèses à trips pour récupérer un tableau
         //12	/api/stops/{id1}/route/{id2}	GET	retourne les voyages (et les horaires) des bus de la ligne {id2} desservant l'arrêt {id1}
+        $route = $stop->trips()->where('route_id', "=", $route->route_id)->orderBy('arrival_time')->get();//where(là où on veut filtrer, opérateur, avec quoi on le compare)
+        return response()->json($route);
     }
 }
