@@ -26,6 +26,7 @@ Route::get("/routes/{route}/trips",[RouteController::class, "trips"]);
 
 Route::apiResource("stops", StopController::class);
 Route::get('/stops/{stop}/routes', [StopController::class, 'routes']);
+Route::get('/stops/{stop}/route/{route}', [StopController::class, 'route']);
 
 Route::apiResource("trips", TripController::class);
 Route::get('/trips/{trip}/route',[TripController::class, 'routes']);

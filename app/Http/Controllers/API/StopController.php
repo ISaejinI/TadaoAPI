@@ -57,4 +57,9 @@ class StopController extends Controller
         $res = Route::whereIn('route_id', $routes)->get(); //get pour récupérer
         return response()->json($res);
     }
+
+    public function route(Stop $stop)
+    {
+        
+    }
 }
