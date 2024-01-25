@@ -12,6 +12,7 @@ class StopController extends Controller
     /**
      * Display a listing of the resource.
      */
+    // 9	/api/stops	GET	retourne l'ensemble des arrêts gérés par la société TADAO
     public function index()
     {
         $stops = Stop::All();
@@ -30,6 +31,7 @@ class StopController extends Controller
     /**
      * Display the specified resource.
      */
+    // 10	/api/stops/{id}	GET	retourne les informations relatives à l'arrêt de bus {id}
     public function show(Stop $stop)
     {
         return response()->json($stop);
@@ -51,6 +53,7 @@ class StopController extends Controller
         //
     }
 
+    // 11	/api/stops/{id}/routes	GET	retourne les lignes de bus desservant l'arrêt {id}
     public function routes(Stop $stop)
     {
         $routes = $stop->trips->unique('route_id')->pluck('route_id');
@@ -58,6 +61,7 @@ class StopController extends Controller
         return response()->json($res);
     }
 
+    // 12	/api/stops/{id1}/route/{id2}	GET	retourne les voyages (et les horaires) des bus de la ligne {id2} desservant l'arrêt {id1}
     public function route(Stop $stop, Route $route) //Pemret de dire ce qu'on rentre dans l'url sans passer par un id
     {
         //on mets des parenthèse à trips pour récupérer l'entiereté de la base de données

@@ -11,6 +11,7 @@ class TripController extends Controller
     /**
      * Display a listing of the resource.
      */
+    // 5	/api/trips	GET	retroune l'ensemble des voyages de la société TADAO
     public function index()
     {
         $trips = Trip::All();
@@ -29,6 +30,7 @@ class TripController extends Controller
     /**
      * Display the specified resource.
      */
+    // 6	/api/trips/{id}	GET	retourne le voyage {id} avec l'itinéraire
     public function show(Trip $trip)
     {
         return response()->json($trip -> load(['shapes' => function($query){$query -> orderBy('shape_pt_sequence', 'asc');}]));
@@ -50,11 +52,13 @@ class TripController extends Controller
         //
     }
 
+    // 7	/api/trips/{id}/route	GET	retourne le voyage {id} ainsi que la ligne desservie par ce voyage
     public function routes(Trip $trip)
     {
         return response()->json($trip->route);
     }
 
+    // 8	/api/trips/{id}/stops	GET	retourne le voyage {id} ainsi que les arrêts (avec les horaires) desservis par ce voyage
     public function stops(Trip $trip)
     {
         return response()->json($trip->load(["stops" => function($query)

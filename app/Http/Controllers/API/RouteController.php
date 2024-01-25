@@ -12,6 +12,7 @@ class RouteController extends Controller
     /**
      * Display a listing of the resource.
      */
+    // 1	/api/routes	GET	retourne la liste complète des lignes de bus
     public function index()
     {
         $routes = Route::All();
@@ -30,6 +31,7 @@ class RouteController extends Controller
     /**
      * Display the specified resource.
      */
+    // 2	/api/routes/{id}	GET	retourne les informations de la route {id}
     public function show(Route $route)
     {
         return response()->json($route);
@@ -51,6 +53,7 @@ class RouteController extends Controller
         //
     }
 
+    // 4	/api/routes/{id}/trips	GET	retourne les voyages associés à la route {id}
     public function trips(Route $route)
     {
         return response()->json($route->trips);
