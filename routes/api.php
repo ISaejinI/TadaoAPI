@@ -23,6 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResource("routes", RouteController::class);
 Route::get("/routes/{route}/trips",[RouteController::class, "trips"]);
+Route::get("/routes/{route}/stops",[RouteController::class, "stops"]);
 
 Route::apiResource("stops", StopController::class);
 Route::get('/stops/{stop}/routes', [StopController::class, 'routes']);

@@ -55,4 +55,10 @@ class RouteController extends Controller
     {
         return response()->json($route->trips);
     }
+
+    //3	/api/routes/{id}/stops	GET	retourne la liste des arrêts desservis par la ligne {id}
+    public function stops(Route $route)
+    {
+        
+    }
 }
