@@ -45,7 +45,19 @@ class StopController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $data = $request->all();
+
+        $request->validate([
+            "stop_id" => "required | unique:App\Models\Stop",
+            "stop_name" => "required | max:255",
+            "stop_desc" => "required | string",
+            "stop_lat" => "required | numeric",
+            "stop_lon" => "required | numeric"
+        ]);
+
+        $stop = Stop::create($request->all());
+
+        return response()->json($stop,201);
     }
 
     /**

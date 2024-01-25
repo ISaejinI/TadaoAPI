@@ -16,6 +16,8 @@ class Stop extends Model
 
     public $timestamps = false;
 
+    protected $guarded = [];
+
     public function trips(): BelongsToMany
     {
         return $this->belongsToMany(Trip::class, 'stop_trip', 'stop_id', 'trip_id'); // la table intermédiaire, la clé étrangère, la clé locale
