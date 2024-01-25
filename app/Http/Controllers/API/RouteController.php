@@ -10,9 +10,6 @@ use Illuminate\Support\Facades\DB;
 
 class RouteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     // 1	/api/routes	GET	retourne la liste complète des lignes de bus
     public function index()
     {
@@ -21,37 +18,10 @@ class RouteController extends Controller
         return response()->json($routes);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
     // 2	/api/routes/{id}	GET	retourne les informations de la route {id}
     public function show(Route $route)
     {
         return response()->json($route);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Route $route)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Route $route)
-    {
-        //
     }
 
     // 4	/api/routes/{id}/trips	GET	retourne les voyages associés à la route {id}
@@ -68,5 +38,29 @@ class RouteController extends Controller
             $query->whereIn('stop_trip.trip_id', $trips);
         })->get();
         return response()->json($stops);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Route $route)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Route $route)
+    {
+        //
     }
 }

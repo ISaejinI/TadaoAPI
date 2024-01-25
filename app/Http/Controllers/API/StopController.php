@@ -9,9 +9,6 @@ use Illuminate\Http\Request;
 
 class StopController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     // 9	/api/stops	GET	retourne l'ensemble des arrêts gérés par la société TADAO
     public function index()
     {
@@ -20,37 +17,10 @@ class StopController extends Controller
         return response()->json($stops);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
     // 10	/api/stops/{id}	GET	retourne les informations relatives à l'arrêt de bus {id}
     public function show(Stop $stop)
     {
         return response()->json($stop);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Stop $stop)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Stop $stop)
-    {
-        //
     }
 
     // 11	/api/stops/{id}/routes	GET	retourne les lignes de bus desservant l'arrêt {id}
@@ -68,5 +38,29 @@ class StopController extends Controller
         //on mets pas de parenthèses à trips pour récupérer un tableau
         $route = $stop->trips()->where('route_id', "=", $route->route_id)->orderBy('arrival_time')->get();//where(là où on veut filtrer, opérateur, avec quoi on le compare)
         return response()->json($route);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Stop $stop)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Stop $stop)
+    {
+        //
     }
 }
