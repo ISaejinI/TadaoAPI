@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Route;
+use App\Models\Stop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -62,6 +63,10 @@ class RouteController extends Controller
     //3	/api/routes/{id}/stops	GET	retourne la liste des arrêts desservis par la ligne {id}
     public function stops(Route $route)
     {
-        
+        $trips = $route->trips()->pluck('trip_id');
+        $stops = Stop::whereHas('Trips', function($query) use ($trips) {
+            $query->whereIn('stop_trip.trip_id', $trips);
+        })->get();
+        return response()->json($stops);
     }
 }
