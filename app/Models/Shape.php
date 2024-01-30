@@ -12,6 +12,8 @@ class Shape extends Model
 
     public $timestamps = false;
 
+    protected $guarded = [];
+
     public function trips(): BelongsTo
     {
         return $this->belongsTo(Route::class, 'shape_id', 'shape_id');

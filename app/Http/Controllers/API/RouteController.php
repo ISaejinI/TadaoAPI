@@ -45,7 +45,21 @@ class RouteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "route_long_name" => "required | max:255",
+            "route_color" => "required | between:6,6"
+        ]);
+
+        $route = Route::create(["route_long_name" => $request -> input("route_long_name"),
+                               "route_short_name" => "",
+                               "route_color" => $request -> input("route_color")
+        ]);
+
+        // $route->save();
+
+        $route->update(["route_short_name" => $route -> route_id]);
+
+        return response()->json($route,201);
     }
 
     /**
@@ -53,7 +67,19 @@ class RouteController extends Controller
      */
     public function update(Request $request, Route $route)
     {
-        //
+        $request->validate([
+            "route_long_name" => "required | max:255",
+            "route_color" => "required | between:6,6",
+            "route_short_name" => "required | max:255"
+        ]);
+
+        $route->update([
+            "route_long_name" => $request -> input("route_long_name"),
+            "route_color" => $request -> input("route_color"),
+            "route_short_name" => $request -> input("route_short_name")
+        ]);
+
+        return response()->json($route,200);
     }
 
     /**
@@ -61,6 +87,6 @@ class RouteController extends Controller
      */
     public function destroy(Route $route)
     {
-        //
+        
     }
 }

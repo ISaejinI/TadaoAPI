@@ -16,6 +16,8 @@ class Trip extends Model
 
     public $timestamps = false;
 
+    protected $guarded = [];
+
     public function route(): BelongsTo
     {
         return $this->belongsTo(Route::class, 'route_id', 'route_id');
