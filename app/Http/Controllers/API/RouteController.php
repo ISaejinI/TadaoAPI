@@ -87,6 +87,14 @@ class RouteController extends Controller
      */
     public function destroy(Route $route)
     {
+        $trips = $route->trips; //Séléction des voyages attachés à la ligne
+
+        foreach ($trips as $t) {
+            $t->stops()->detach();
+            $t->delete();
+        }
         
+        $route->delete();
+        return response()->noContent();
     }
 }
