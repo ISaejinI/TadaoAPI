@@ -4,6 +4,7 @@ use App\Http\Controllers\API\RouteController;
 use App\Http\Controllers\API\ShapeController;
 use App\Http\Controllers\API\StopController;
 use App\Http\Controllers\API\TripController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -35,3 +36,7 @@ Route::get('/trips/{trip}/route',[TripController::class, 'routes']);
 Route::get("/trips/{trip}/stops",[TripController::class, 'stops']);
 
 Route::post('/add/shapes', [ShapeController::class, "addPath"]);
+
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::get('/logout', [AuthController::class, 'logout']);
