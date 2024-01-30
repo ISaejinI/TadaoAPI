@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\RouteController;
+use App\Http\Controllers\API\ShapeController;
 use App\Http\Controllers\API\StopController;
 use App\Http\Controllers\API\TripController;
 use Illuminate\Http\Request;
@@ -32,3 +33,5 @@ Route::get('/stops/{stop}/route/{route}', [StopController::class, 'route']);
 Route::apiResource("trips", TripController::class);
 Route::get('/trips/{trip}/route',[TripController::class, 'routes']);
 Route::get("/trips/{trip}/stops",[TripController::class, 'stops']);
+
+Route::post('/add/shapes', [ShapeController::class, "addPath"]);
