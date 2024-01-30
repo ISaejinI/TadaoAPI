@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Trip;
 use Illuminate\Http\Request;
+use Symfony\Component\Console\Input\Input;
 
 class TripController extends Controller
 {
@@ -43,7 +44,33 @@ class TripController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "route_id" => "required | exists:routes,route_id",
+            "trip_headsign" => "required | string",
+            "shape_id" => "required | exists:shapes,shape_id",
+            "data" => "required | array"
+        ]);
+
+        $data = $request->input("data");
+        $nb = 1;
+
+        $trip = Trip::create([
+            "route_id" => $request->input("route_id"),
+            "trip_headsign" => $request->input("trip_headsign"),
+            "shape_id" => $request->input("shape_id")
+        ]);
+
+        foreach ($data as $d) {
+            $trip->stops()->attach(
+                $d["stop_id"],
+                ["arrival_time" => $d["arrival_time"],
+                "departure_time" => $d["departure_time"],
+                "stop_sequence" => $nb]
+            );
+            $nb++;
+        }
+
+        return response()->json($trip, 201);
     }
 
     /**
