@@ -39,4 +39,4 @@ Route::post('/add/shapes', [ShapeController::class, "addPath"]);
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-Route::get('/logout', [AuthController::class, 'logout']);
+Route::get('/logout', [AuthController::class, 'logout'])->middleware(['auth:sanctum']);
