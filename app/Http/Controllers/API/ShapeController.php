@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class ShapeController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth:sanctum')->only(['addPath']);
+    }
+    
     /**
      * Display a listing of the resource.
      */

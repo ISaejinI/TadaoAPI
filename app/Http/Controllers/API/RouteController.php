@@ -6,10 +6,16 @@ use App\Http\Controllers\Controller;
 use App\Models\Route;
 use App\Models\Stop;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\DB;
 
 class RouteController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth:sanctum')->only(['store','update','destroy']);
+    }
+
+
     // 1	/api/routes	GET	retourne la liste complète des lignes de bus
     public function index()
     {

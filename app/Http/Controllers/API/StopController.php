@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 
 class StopController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth:sanctum')->only(['store','update','destroy']);
+    }
+
     // 9	/api/stops	GET	retourne l'ensemble des arrêts gérés par la société TADAO
     public function index()
     {

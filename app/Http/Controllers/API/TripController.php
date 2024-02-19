@@ -9,6 +9,10 @@ use Symfony\Component\Console\Input\Input;
 
 class TripController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth:sanctum')->only(['store']);
+    }
+
     // 5	/api/trips	GET	retroune l'ensemble des voyages de la société TADAO
     public function index()
     {
